@@ -1,0 +1,55 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+*.swp
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Logs and databases
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.sql
+*.sqlite
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# WordPress core
+/wp-config.php
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/backup-db/
+
+# Build artifacts
+/dist/
+/build/
+*.css.map
+*.js.map
+*.zip
+
+# Local development
+*.local
+
+# Linter and dependency caches
+.eslintcache
+.stylelintcache
+
