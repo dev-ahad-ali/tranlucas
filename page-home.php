@@ -162,58 +162,74 @@ get_header();
       </div>
    </section> <!-- .statistic-section -->
    
+   <?php if(!empty( $banner = get_field('office_locations_banner') ) ) : ?>
    <section class="offices padding">
       <div class="container">
-         <img class="img-fluid w-100" src="<?php echo get_template_directory_uri() . '/assets/img/media/Offices.png'; ?>" alt="">
+         <img class="img-fluid w-100" src="<?php echo esc_url( $banner['url'] ); ?>" alt="<?php echo esc_attr( $banner['alt']); ?>">
       </div>
    </section> <!-- .offices -->
+   <?php endif; ?>
 
    <section class="blog padding">
       <div class="container">
          <div class="blog-content">
-            <p class="pretitle-bold">The latest news</p>
-            <h2>Our word on security</h2>
+            <?php if($blog_section = get_field('blog_section')): ?>
+               <p class="pretitle-bold"><?php echo esc_html($blog_section['label'] ?: 'The latest news'); ?></p>
+               <h2><?php echo esc_html($blog_section['title'] ?: 'Our word on security'); ?></h2>
+            <?php endif; ?>
+            
             <div class="blog-post padding">
                <div class="main-blog-post grid">
-                  <div class="card">
-                     <img src="<?php echo get_template_directory_uri() . '/assets/img/media/blog-post1.png'; ?>" class="card-img-top" alt="blog-post">
-                     <div class="card-body pt-3 mt-sm-3">
-                        <a class="h6" href="#">Layla (Xreach) – Youngest Tranchulas Certified Penetration Testing
-                           Professional</a>
-                        <p class="p14">12 Feb 2024</p>
+                  <?php 
+                  // Get sticky posts first
+                  $sticky_posts = get_option('sticky_posts');
+
+                  // Get latest 5 posts
+                  $recent_posts = new WP_Query(array(
+                     'posts_per_page' => 5,
+                     'post_type' => 'post',
+                     'post__not_in' => $sticky_posts,
+                     'orderby' => 'date',
+                     'order' => 'DESC'
+                  ));
+
+                  $post_count = 0;
+                  if($recent_posts->have_posts()) : 
+                     // First two posts with featured image
+                     while($recent_posts->have_posts() && $post_count < 2) : $recent_posts->the_post(); 
+                     $post_count++;
+                  ?>
+                     <div class="card">
+                        <?php if(has_post_thumbnail()): ?>
+                           <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" class="card-img-top" alt="<?php echo esc_attr(get_the_title()); ?>">
+                        <?php endif; ?>
+                        <div class="card-body pt-3 mt-sm-3">
+                           <a class="h6" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                           <p class="p14"><?php echo get_the_date('d M Y'); ?></p>
+                        </div>
                      </div>
-                  </div>
-                  <div class="card">
-                     <img src="<?php echo get_template_directory_uri() . '/assets/img/media/blog-post1.png'; ?>" class="card-img-top" alt="blog-post">
-                     <div class="card-body pt-3 mt-sm-3">
-                        <a class="h6" href="#">Layla (Xreach) – Youngest Tranchulas Certified Penetration Testing
-                           Professional</a>
-                        <p class="p14">12 Feb 2024</p>
-                     </div>
-                  </div>
+                  <?php 
+                     endwhile;
+                  ?>
+                  
                   <div class="blog-text grid">
-                     <div class="card">
-                        <div class="card-body">
-                           <a class="h6" href="#">Layla (Xreach) – Youngest Tranchulas Certified Penetration Testing
-                              Professional</a>
-                           <p class="p14 card-text">12 Feb 2024</p>
+                     <?php 
+                     // Next three posts without featured image
+                     while($recent_posts->have_posts() && $post_count < 5) : $recent_posts->the_post();
+                     $post_count++;
+                     ?>
+                        <div class="card">
+                           <div class="card-body">
+                              <a class="h6" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                              <p class="p14 card-text"><?php echo get_the_date('d M Y'); ?></p>
+                           </div>
                         </div>
-                     </div>
-                     <div class="card">
-                        <div class="card-body">
-                           <a class="h6" href="#">Layla (Xreach) – Youngest Tranchulas Certified Penetration Testing
-                              Professional</a>
-                           <p class="p14 card-text">12 Feb 2024</p>
-                        </div>
-                     </div>
-                     <div class="card">
-                        <div class="card-body">
-                           <a class="h6" href="#">Layla (Xreach) – Youngest Tranchulas Certified Penetration Testing
-                              Professional</a>
-                           <p class="p14 card-text">12 Feb 2024</p>
-                        </div>
-                     </div>
+                     <?php endwhile; ?>
                   </div>
+                  <?php 
+                  endif;
+                  wp_reset_postdata(); 
+                  ?>
                </div>
             </div>
          </div>
