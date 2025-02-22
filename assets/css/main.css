@@ -825,16 +825,6 @@ h6 {
    --bs-gutter-y: 1.875rem;
 }
 
-/* .information-container .information-item:not(:last-child)::after {
-   content: "";
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   width: 1px;
-   background-color: var(--grey-super-light);
-   right: 0;
-} */
-
 /* offices information section style end */
 /* =====================================
          contact page style end
@@ -1225,6 +1215,61 @@ h6 {
 .company-hero .hero-content p {
    max-width: 50rem;
 }
+
+/* Sipnner style */
+.loading-spinner {
+   --size: 2.5rem;
+   --color: #000;
+   --speed: 1.3s;
+   --thickness: 3px;
+   
+   display: inline-block;
+   position: relative;
+   margin: 2rem auto;
+
+   max-width: 100%;
+   width: 15rem;
+   min-height: 15rem;
+}
+
+
+.loading-spinner:after {
+   content: " ";
+   display: block;
+   width: var(--size);
+   height: var(--size);
+   margin: 8px;
+   border-radius: 50%;
+   border: var(--thickness) solid #000;
+   border-color: #000 transparent #000 transparent;
+   animation: spin var(--speed) linear infinite;
+}
+
+/* Optional variations */
+.loading-spinner--small {
+   width: 30px;
+   height: 30px;
+}
+
+.loading-spinner--small:after {
+   width: 20px;
+   height: 20px;
+   border-width: 2px;
+}
+
+.loading-spinner--primary:after {
+   border-color: var(--bs-primary) transparent var(--bs-primary) transparent;
+}
+
+@keyframes spin {
+   0% {
+       transform: rotate(0deg);
+   }
+   100% {
+       transform: rotate(360deg);
+   }
+}
+/* //End spinner style */
 
 /* =====================================
          company page style end

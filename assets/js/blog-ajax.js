@@ -62,7 +62,7 @@ $(document).ready(function($) {
                 security: blogAjax.nonce // Add nonce
             },
             beforeSend: function() {
-                $('.main-blog-post').html('<div class="loading-spinner"></div>');
+                $('.main-blog-post').html('<div class="loading-spinner loading-spinner--primary"></div>');
             },
             success: function(response) {
                 if(response.success) {
