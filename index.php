@@ -23,15 +23,18 @@ get_header();
             <h1><?php echo esc_html( get_field('blog_page_title', get_queried_object_id() )); ?></h1>
          </div>
          <?php
-         $sticky = get_option('sticky_posts');
-         if (!empty($sticky)) :
-            $args = array(
-               'post__in' => $sticky,
+         // Get sticky posts once and reuse
+         $sticky_posts = get_option('sticky_posts');
+
+         // $sticky = get_option('sticky_posts');
+         if (!empty($sticky_posts)) :
+            $sticky_query = new WP_Query(array(
+               'post__in' => $sticky_posts,
                'ignore_sticky_posts' => 1,
-               'posts_per_page' => 1
-            );
-            $query = new WP_Query($args);
-            if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
+               'posts_per_page' => 1,
+               'no_found_rows' => true  // Skip pagination counts
+           ));
+            if ($sticky_query->have_posts()) : while ($sticky_query->have_posts()) : $sticky_query->the_post();
          ?>
          <div class="sticky-post rounded-5 padding overflow-hidden d-flex align-items-end" style="background-image: url(<?php echo get_the_post_thumbnail_url($post->ID, 'full'); ?>);">
             <div class="card bg-transparent">
@@ -52,19 +55,22 @@ get_header();
       <div class="container">
          <div class="grid padding border-bottom align-items-center">
             <?php
-            // Query for latest 3 posts excluding sticky posts
-            $args = array(
-                'post__not_in' => get_option('sticky_posts'),
-                'posts_per_page' => 3,
-                'ignore_sticky_posts' => 1
-            );
-            $latest_posts = new WP_Query($args);
-            $excluded_ids = array();
-            
-            if ($latest_posts->have_posts()) :
-                while ($latest_posts->have_posts()) : $latest_posts->the_post();
-                $excluded_ids[] = get_the_ID();
-            ?>
+            // Combined query for all non-sticky posts
+            $main_query = new WP_Query(array(
+               'post__not_in' => $sticky_posts,
+               'posts_per_page' => 11,
+               'ignore_sticky_posts' => 1,
+               'no_found_rows' => true
+           ));
+
+           if ($main_query->have_posts()) :
+               // Split into text posts (first 3) and regular posts (remaining)
+               $all_posts = $main_query->posts;
+               $text_posts = array_slice($all_posts, 0, 3);
+               
+               foreach ($text_posts as $post) :
+                   setup_postdata($post);
+           ?>
             <div class="card">
                <div class="card-body mt-0">
                   <a class="h6" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -72,8 +78,8 @@ get_header();
                </div>
             </div>
             <?php
-                endwhile;
-                wp_reset_postdata();
+               endforeach;
+               wp_reset_postdata();
             endif;
             ?>
          </div>
@@ -84,55 +90,15 @@ get_header();
    <section class="regular-post">
       <div class="container">
          <div class="blog-post padding grid">
-            <!-- search box start  -->
-            <!-- <aside class="search-box-container d-flex flex-column gap">
-               <form class="d-flex" role="search">
-                  <div class="w-100">
-                     <label for="" class="form-label">Search posts</label>
-                     <div class="position-relative">
-                        <input type="text" class="form-control" id="searchInput" type="search" placeholder="Search"
-                           aria-label="Search">
-                        <label class="position-absolute" for="searchInput">
-                           <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Search.png'; ?>" alt="">
-                        </label>
-                     </div>
-                  </div>
-               </form>
-               
-               <div class="categories widget">
-                  <h6>Categories</h6>
-                  <div class="d-flex flex-wrap gap categories">
-                     <a href="#" class="p14">Cyber Security (12)</a>
-                     <a href="#" class="p14">Case Studies (35)</a>
-                     <a href="#" class="p14">Category name (102)</a>
-                  </div>
-               </div>
-               <div class="keyword widget">
-                  <h6>Keywords</h6>
-                  <div class="d-flex flex-wrap gap tags">
-                     <a href="#" class="p14" type="button">#cyber-security</a>
-                     <a href="#" class="p14" type="button">#ai</a>
-                     <a href="#" class="p14" type="button">#red-teaming</a>
-                     <a href="#" class="p14" type="button">#penetration-testing</a>
-                     <a href="#" class="p14" type="button">#securityhub</a>
-                  </div>
-               </div>
-            </aside> -->
             <?php get_template_part('partials/sidebar-blog'); ?>
-            <!-- search box start  -->
-
+            
             <div class="main-blog-post grid">
                <?php
-               // Query for remaining posts (excluding stickies and first 3 posts)
-               $main_args = array(
-                   'post__not_in' => array_merge(get_option('sticky_posts'), $excluded_ids),
-                   'posts_per_page' => 8,
-                   'ignore_sticky_posts' => 1
-               );
-               $main_query = new WP_Query($main_args);
-               
-               if ($main_query->have_posts()) :
-                   while ($main_query->have_posts()) : $main_query->the_post();
+               if (isset($all_posts)) :
+                   $regular_posts = array_slice($all_posts, 3);
+                   
+                   foreach ($regular_posts as $post) :
+                       setup_postdata($post);
                ?>
                <div class="card">
                   <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" class="card-img-top" alt="<?php the_title_attribute(); ?>">
@@ -142,7 +108,7 @@ get_header();
                   </div>
                </div>
                <?php
-                   endwhile;
+                   endforeach;
                    wp_reset_postdata();
                endif;
                ?>

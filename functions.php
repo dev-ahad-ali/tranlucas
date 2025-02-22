@@ -148,9 +148,10 @@ function transchules_scripts() {
 	wp_enqueue_script( 'bootstrap-bundle', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '5.3.3', true );
 	wp_enqueue_script( 'transchules-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'bootstrap-bundle'), _S_VERSION, true );
 
-	wp_enqueue_script('blog-ajax', get_template_directory_uri().'/js/blog-ajax.js', array('jquery'), null, true);
+	wp_enqueue_script('blog-ajax', get_template_directory_uri().'/assets/js/blog-ajax.js', array('jquery'), null, true);
     wp_localize_script('blog-ajax', 'blogAjax', array(
-        'ajaxurl' => admin_url('admin-ajax.php')
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('blog_search_nonce') // Add nonce
     ));
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -255,25 +256,102 @@ add_action('wp_ajax_blog_search', 'blog_search_callback');
 add_action('wp_ajax_nopriv_blog_search', 'blog_search_callback');
 
 function blog_search_callback() {
-    $search = sanitize_text_field($_POST['search']);
-    
-    $args = array(
-        's' => $search,
-        'post__not_in' => array_merge(get_option('sticky_posts'), $excluded_ids),
-        'posts_per_page' => 8,
-        'ignore_sticky_posts' => 1
-    );
-    
-    $query = new WP_Query($args);
-    
-    if($query->have_posts()) : 
-        while($query->have_posts()) : $query->the_post();
-            // Your post template here
-            get_template_part('partials/content', 'search');
-        endwhile;
-    else :
-        echo '<p>No posts found</p>';
-    endif;
-    
-    wp_die();
+    try {
+        // Verify nonce first
+        if (!check_ajax_referer('blog_search_nonce', 'security', false)) {
+            throw new Exception('Security check failed');
+        }
+
+        // Sanitize input
+        $search = isset($_POST['search']) ? sanitize_text_field($_POST['search']) : '';
+        
+        // Validate search query
+        if (empty($search) || strlen($search) < 3) {
+            throw new Exception('Search term too short');
+        }
+
+        $args = array(
+            's' => $search,
+            'post__not_in' => get_option('sticky_posts'),
+            'posts_per_page' => 8,
+            'ignore_sticky_posts' => 1
+        );
+        
+        $query = new WP_Query($args);
+        
+        ob_start();
+        if($query->have_posts()) : 
+            while($query->have_posts()) : $query->the_post();
+                // Use direct HTML instead of template part
+                ?>
+                <div class="card">
+                    <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" 
+                         class="card-img-top" 
+                         alt="<?php the_title_attribute(); ?>">
+                    <div class="card-body pt-3 mt-sm-3">
+                        <a class="h6 d-inline-block" href="<?php the_permalink(); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                        <p class="p14"><?php echo get_the_date('d M Y'); ?></p>
+                    </div>
+                </div>
+                <?php
+            endwhile;
+        else :
+            echo '<p>No posts found</p>';
+        endif;
+        $response = ob_get_clean();
+        
+        wp_send_json_success($response);
+        
+    } catch (Exception $e) {
+        wp_send_json_error($e->getMessage(), 400);
+    } finally {
+        wp_die();
+    }
+}
+
+// AJAX handler for initial posts
+add_action('wp_ajax_get_initial_posts', 'get_initial_posts_callback');
+add_action('wp_ajax_nopriv_get_initial_posts', 'get_initial_posts_callback');
+
+function get_initial_posts_callback() {
+    try {
+        check_ajax_referer('blog_search_nonce', 'security');
+        
+        $args = array(
+            'post__not_in' => get_option('sticky_posts'),
+            'posts_per_page' => 8,
+            'ignore_sticky_posts' => 1
+        );
+        
+        $query = new WP_Query($args);
+        
+        ob_start();
+        if($query->have_posts()) : 
+            while($query->have_posts()) : $query->the_post();
+                ?>
+                <div class="card">
+                    <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" 
+                         class="card-img-top" 
+                         alt="<?php the_title_attribute(); ?>">
+                    <div class="card-body pt-3 mt-sm-3">
+                        <a class="h6 d-inline-block" href="<?php the_permalink(); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                        <p class="p14"><?php echo get_the_date('d M Y'); ?></p>
+                    </div>
+                </div>
+                <?php
+            endwhile;
+        endif;
+        $response = ob_get_clean();
+        
+        wp_send_json_success($response);
+        
+    } catch (Exception $e) {
+        wp_send_json_error($e->getMessage());
+    } finally {
+        wp_die();
+    }
 }

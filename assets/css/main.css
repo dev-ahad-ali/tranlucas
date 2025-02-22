@@ -90,6 +90,17 @@ h6 {
    line-height: 1.688rem;
 }
 
+.post-thumbnail{
+   max-width: 100%;
+}
+
+.post-thumbnail img{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: center;
+}
+
 .pretitle-bold {
    --margin-bottotm: 0.75rem;
    --letter-spacing: 0.05em;
