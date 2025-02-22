@@ -13,16 +13,13 @@ get_header();
 ?>
 
 	<!-- career hero section start -->
-	<section class="career-hero">
+	<!-- <section class="career-hero">
       <div class="container">
          <div class="career-content padding">
             <div class="career-main-content mx-auto text-center">
                <p class="pretitle-bold">careers on tranchulas</p>
                <h1>Work with us</h1>
-               <p class="pt-1 mb-4">Explore remote-friendly, flexible opportunities and join our mission to make work
-                  life
-                  simpler, more
-                  pleasant and more productive.</p>
+               <p class="pt-1 mb-4">Explore remote-friendly, flexible opportunities and join our mission to make work life simpler, more pleasant and more productive.</p>
                <a class="btn btn-primary" href="#">View careers</a>
             </div>
             <div class="future-works bg-gradient rounded-5 padding overflow-hidden">
@@ -41,10 +38,7 @@ get_header();
                      <img class="mb-3" src="<?php echo get_template_directory_uri() . '/assets/img/icons/Security.png'; ?>" alt="">
                      <div class="d-flex flex-column pt-1">
                         <h5>Connected</h5>
-                        <p class="p14 pt-1">We come together wherever we are – across time zones, regions,
-                           offices and
-                           screens.
-                        </p>
+                        <p class="p14 pt-1">We come together wherever we are – across time zones, regions, offices and screens.</p>
                      </div>
                   </div>
                   <div class="future-works-item d-flex flex-column text-center align-items-center position-relative">
@@ -60,18 +54,71 @@ get_header();
                </div>
                <div class="future-bottom-text-content text-center mx-auto">
                   <h2 class="mb-3">Tranchulas is where the future works</h2>
-                  <p class="p16 pt-1 mx-auto text-primary">Every day, we refine, iterate and explore how to make work
-                     better for
-                     everyone.
-                     Join us
-                     in
-                     creating a better future of work that’s more connected, inclusive and flexible.</p>
+                  <p class="p16 pt-1 mx-auto text-primary">Every day, we refine, iterate and explore how to make work better for everyone. Join us in creating a better future of work that’s more connected, inclusive and flexible.</p>
                </div>
             </div>
          </div>
       </div>
-   </section>
-   <!-- career hero section end -->
+   </section> -->
+   <section class="career-hero">
+      <div class="container">
+         <div class="career-content padding">
+            <div class="career-main-content mx-auto text-center">
+               <?php 
+               $hero_section_group = get_field('career_hero_section');
+               if($section_label = $hero_section_group['label']): 
+               ?>
+                  <p class="pretitle-bold"><?php echo esc_html($section_label); ?></p>
+               <?php endif; ?>
+               
+               <?php if($title = $hero_section_group['title']) : ?>
+                  <h1><?php echo esc_html($title); ?></h1>
+               <?php endif; ?>
+               
+               <?php if($lead_text = $hero_section_group['lead']) : ?>
+                  <p class="pt-1 mb-4"><?php echo esc_html($lead_text); ?></p>
+               <?php endif; ?>
+               
+               <?php if($button = $hero_section_group['button']) : ?>
+                  <a class="btn btn-primary" href="<?php echo esc_url($button['url']); ?>" target="<?php echo esc_attr($button['target']) ?: '_self'; ?>">
+                     <?php echo esc_html($button['title']); ?>
+                  </a>
+               <?php endif; ?>
+            </div>
+            <div class="future-works bg-gradient rounded-5 padding overflow-hidden">
+               <?php if(have_rows('value_boxes')): ?>
+               <div class="future-works-boxes grid">
+                  <?php while(have_rows('value_boxes')): the_row(); ?>
+                  <div class="future-works-item d-flex flex-column text-center align-items-center position-relative">
+                     <?php if($icon = get_sub_field('icon')): ?>
+                        <img class="mb-3" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>">
+                     <?php endif; ?>
+                     <div class="d-flex flex-column pt-1">
+                        <?php if($box_title = get_sub_field('title')): ?>
+                           <h5><?php echo esc_html($box_title); ?></h5>
+                        <?php endif; ?>
+                        <?php if($description = get_sub_field('description')): ?>
+                           <p class="p14 pt-1"><?php echo esc_html($description); ?></p>
+                        <?php endif; ?>
+                     </div>
+                  </div>
+                  <?php endwhile; ?>
+               </div>
+               <?php endif; ?>
+               
+               <div class="future-bottom-text-content text-center mx-auto">
+                  <?php if($bottom_title = get_field('future_works_title')): ?>
+                     <h2 class="mb-3"><?php echo esc_html($bottom_title); ?></h2>
+                  <?php endif; ?>
+                  <?php if($bottom_text = get_field('future_works_lead')): ?>
+                     <p class="p16 pt-1 mx-auto text-primary"><?php echo esc_html($bottom_text); ?></p>
+                  <?php endif; ?>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section> <!-- section.career-hero -->
+   
    <!-- image section start -->
    <section class="grid images-section">
       <div class="blocks-item padding d-flex align-items-center justify-content-end">
