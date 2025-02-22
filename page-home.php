@@ -162,13 +162,13 @@ get_header();
       </div>
    </section> <!-- .statistic-section -->
    
-   <?php if(!empty( $banner = get_field('office_locations_banner') ) ) : ?>
-   <section class="offices padding">
-      <div class="container">
-         <img class="img-fluid w-100" src="<?php echo esc_url( $banner['url'] ); ?>" alt="<?php echo esc_attr( $banner['alt']); ?>">
-      </div>
-   </section> <!-- .offices -->
-   <?php endif; ?>
+  <?php 
+  // Conditionally include office locations banner section
+  if ( get_field('enable_global_office_locations_banner') ) {
+      get_template_part('partials/global-offices-banner');
+   } 
+  
+  ?>
 
    <section class="blog padding">
       <div class="container">

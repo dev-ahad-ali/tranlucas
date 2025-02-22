@@ -148,6 +148,11 @@ function transchules_scripts() {
 	wp_enqueue_script( 'bootstrap-bundle', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '5.3.3', true );
 	wp_enqueue_script( 'transchules-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'bootstrap-bundle'), _S_VERSION, true );
 
+	wp_enqueue_script('blog-ajax', get_template_directory_uri().'/js/blog-ajax.js', array('jquery'), null, true);
+    wp_localize_script('blog-ajax', 'blogAjax', array(
+        'ajaxurl' => admin_url('admin-ajax.php')
+    ));
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -174,6 +179,11 @@ require get_template_directory() . '/helper/footer-widget-menu-walker.php';
  * Load additional ACF configs.
  */
 require get_template_directory() . '/helper/acf_field_config.php';
+
+/**
+ * Load custom widgets
+ */
+require get_template_directory() . '/helper/custom_widgets.php';
 
 /**
  * Custom template tags for this theme.
@@ -239,3 +249,31 @@ function fix_svg_mime_type($data, $file, $filename, $mimes) {
 }
 add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 4);
 
+
+// Blog AJAX handler
+add_action('wp_ajax_blog_search', 'blog_search_callback');
+add_action('wp_ajax_nopriv_blog_search', 'blog_search_callback');
+
+function blog_search_callback() {
+    $search = sanitize_text_field($_POST['search']);
+    
+    $args = array(
+        's' => $search,
+        'post__not_in' => array_merge(get_option('sticky_posts'), $excluded_ids),
+        'posts_per_page' => 8,
+        'ignore_sticky_posts' => 1
+    );
+    
+    $query = new WP_Query($args);
+    
+    if($query->have_posts()) : 
+        while($query->have_posts()) : $query->the_post();
+            // Your post template here
+            get_template_part('partials/content', 'search');
+        endwhile;
+    else :
+        echo '<p>No posts found</p>';
+    endif;
+    
+    wp_die();
+}
