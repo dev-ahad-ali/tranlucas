@@ -12,7 +12,11 @@
 get_header();
 ?>
 
-   <section class="career-hero">
+   <section class="career-hero overflow-hidden position-relative">
+      <div class="gradeint-circle"></div>
+      <div class="gradeint-circle right"></div>
+      <div class="shape shape-gradient-circle left-top position-absolute bg-gradient"></div>
+      <div class="shape shape-gradient-circle right-bottom position-absolute bg-gradient"></div>
       <div class="container">
          <div class="career-content padding">
             <div class="career-main-content mx-auto text-center">
@@ -133,53 +137,66 @@ get_header();
    <!-- opening section start -->
    <section class="openning-section">
       <div class="container">
-         <div class="opening-content bg-gradient padding rounded-5">
-            <div class="operning-content-head">
-               <h2 class="mb-3">Current Openings</h2>
-               <p class="pt-1">Explore our open roles for working totally remotely, from the office or somewhere in
-                  between.</p>
-            </div>
-            <div class="location d-flex gap flex-wrap">
-               <button class="p14 px-3 border-0" type="button">Islamabad, Pakistan</button>
-               <button class="p14 px-3 border-0" type="button">London, UK</button>
-               <button class="p14 px-3 border-0" type="button">Birmingham, UK</button>
-               <button class="p14 px-3 border-0" type="button">Melbourne, Australias</button>
-               <button class="p14 px-3 border-0" type="button">Sydney, Australia</button>
-            </div>
-            <div class="list d-flex flex-column gap-4">
-               <div
-                  class="list-item rounded-2 py-3 border d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
-                  <div>
-                     <h5 class="mb-1">Information Security Researchers</h5>
-                     <p class="p16">Remote - Full Time</p>
-                  </div>
-                  <div class="d-inline-flex align-items-center gap-1">
-                     <a class="h6 text-primary" href="#">More details</a><img src="<?php echo get_template_directory_uri() . '/assets/img/icons/arrowexpand.png'; ?>"
-                        alt="">
-                  </div>
+         <div class="opening-content bg-gradient padding rounded-5 position-relative overflow-hidden">
+            <div class="shape shape-bg position-absolute"></div>
+            <?php 
+            $openings_section = get_field('openings_section');
+            if($openings_section) : ?>
+               <div class="operning-content-head">
+                  <h2 class="mb-3"><?php echo esc_html($openings_section['title']); ?></h2>
+                  <p class="pt-1"><?php echo esc_html($openings_section['description']); ?></p>
                </div>
-               <div
-                  class="list-item rounded-2 py-3 border d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
-                  <div>
-                     <h5 class="mb-1">Information Security Researchers</h5>
-                     <p class="p16">Remote - Full Time</p>
-                  </div>
-                  <div class="d-inline-flex align-items-center gap-1">
-                     <a class="h6 text-primary" href="#">More details</a><img src="<?php echo get_template_directory_uri() . '/assets/img/icons/arrowexpand.png'; ?>"
-                        alt="">
-                  </div>
+               
+               <?php if(have_rows('openings_section_locations')): ?>
+               <div class="location d-flex gap flex-wrap">
+                  <?php while(have_rows('openings_section_locations')): the_row(); ?>
+                     <span class="p14 px-3 border-0 item">
+                        <?php echo esc_html(get_sub_field('location')); ?>
+                     </span>
+                  <?php endwhile; ?>
                </div>
-               <div
-                  class="list-item rounded-2 py-3 border d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
-                  <div>
-                     <h5 class="mb-1">Information Security Researchers</h5>
-                     <p class="p16">Remote - Full Time</p>
-                  </div>
-                  <div class="d-inline-flex align-items-center gap-1">
-                     <a class="h6 text-primary" href="#">More details</a><img src="<?php echo get_template_directory_uri() . '/assets/img/icons/arrowexpand.png'; ?>"
-                        alt="">
-                  </div>
-               </div>
+               <?php endif; ?>
+            <?php endif; ?>
+
+            <div class="job-list d-flex flex-column gap-4">
+               <?php
+               $args = array(
+                   'post_type' => 'job',
+                   'posts_per_page' => -1
+               );
+               $jobs = new WP_Query($args);
+               
+               if($jobs->have_posts()) : 
+                   while($jobs->have_posts()) : $jobs->the_post();
+                       $job_details = get_field('job_details');
+                       $job_link = $job_details['job_link'];
+               ?>
+                   <div class="list-item rounded-2 py-3 border d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+                       <div>
+                           <h5 class="mb-1"><?php the_title(); ?></h5>
+                           <?php if($job_details) : ?>
+                           <p class="p16">
+                               <?php echo esc_html($job_details['location']); ?> - 
+                               <?php echo esc_html($job_details['job_type']); ?>
+                           </p>
+                           <?php endif; ?>
+                       </div>
+                       <?php if($job_link) : ?>
+                       <div class="d-inline-flex align-items-center gap-1">
+                           <a class="h6 text-primary d-inline-flex align-items-center" href="<?php echo esc_url($job_link['url']); ?>">
+                              <?php echo esc_html($job_link['title'] ? $job_link['title'] : 'More details'); ?>
+                              <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/ArrowExpand.svg'; ?>" alt="ArrowExpand">
+                           </a>
+                       </div>
+                       <?php endif; ?>
+                   </div>
+               <?php
+                   endwhile;
+                   wp_reset_postdata();
+               else :
+                   echo '<p>No current openings at this time.</p>';
+               endif;
+               ?>
             </div>
          </div>
       </div>

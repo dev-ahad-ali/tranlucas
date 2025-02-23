@@ -939,7 +939,7 @@ h6 {
    --gap-y: .75rem;
 }
 
-.location button {
+.location .item {
    padding-block: 0.969rem;
    background-color: var(--grey-super-light);
    border-radius: 0.25rem;
@@ -1022,6 +1022,38 @@ h6 {
 /* =====================================
          career page style start
 =======================================*/
+.career-hero{
+   /* background-image: url(../img/shape/shape-careers-hero.png); */
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: right top;
+}
+.career-hero .gradeint-circle:not(.right){
+   left: 5rem;
+   top: -9.625rem;
+}
+
+.shape-gradient-circle{
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+.career-hero .shape-gradient-circle{
+   
+}
+.career-hero .shape-gradient-circle.left-top{
+   left: 0;
+   top: 0;
+   width: 25rem;
+   background-image: url(../img/shape/shape-circles-left-top-half.png);
+}
+.career-hero .shape-gradient-circle.right-bottom{
+   width: 48.4375rem;
+   right: 0;
+   top: 10.8125rem;
+   background-image: url(../img/shape/shape-circles-right-bottom-half.png);
+}
+
 .career-content {
    --padding-top: clamp(1.875rem, 1.4953rem + 1.8987vw, 3.75rem);
    --padding-bottom: 7.375rem;
@@ -1165,6 +1197,24 @@ h6 {
    --padding-right: 2.5rem;
    --rotate: 180deg;
    --gradient: var(--gradient-secondary);
+   --section-shape-size: 47rem; /* 752px */
+   z-index: 1;
+}
+
+.section-shape{
+   position: absolute;
+   z-index: -1;
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+
+.opening-content .section-shape{
+   background-image: url(../img/shape/current-openings-circles.png);
+   background-position: right top;
+   width: var(--section-shape-size);
+   height: var(--section-shape-size);
+   right: 0;
+   top: 0;
 }
 
 .operning-content-head {
@@ -1180,7 +1230,7 @@ h6 {
    margin-bottom: clamp(1.5rem, 1.1667rem + 1.6667vw, 2.5rem);
 }
 
-.list .list-item {
+.job-list .list-item {
    --bs-border-color: var(--bs-gray-light);
    padding-inline: 1.875rem 2.5rem;
 }

@@ -187,6 +187,11 @@ require get_template_directory() . '/helper/acf_field_config.php';
 require get_template_directory() . '/helper/custom_widgets.php';
 
 /**
+ * Load custom post types
+ */
+require get_template_directory() . '/helper/custom_post_types.php';
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';

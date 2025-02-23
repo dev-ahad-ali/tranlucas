@@ -138,7 +138,6 @@ get_header();
    <section class="statistic-section">
       <div class="container">
          <div class="statistic-section-container bg-gradient padding position-relative overflow-hidden">
-            <div class="gradeint-circle"></div>
             <div class="shape shape-bg position-absolute"></div>
             <?php if($stats = get_field('statistics_section')): ?>
             <div class="number-content mx-auto text-center padding">
