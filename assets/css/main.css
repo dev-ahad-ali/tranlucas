@@ -1080,7 +1080,7 @@ h6 {
 }
 
 /* images section  */
-.images-section {
+.future-block-section {
    --column: 1;
    margin-top: 1.875rem;
 }
@@ -1138,7 +1138,7 @@ h6 {
 }
 
 .value-item img {
-   --size: 1.667rem;
+   --size: 2rem;
    width: var(--size);
    height: var(--size);
 }
@@ -1467,7 +1467,7 @@ h6 {
    }
 
    /* images section */
-   .images-section {
+   .future-block-section {
       --column: 2;
    }
 
