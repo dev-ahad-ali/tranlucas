@@ -15,10 +15,10 @@ get_header();
    <section class="career-hero overflow-hidden position-relative">
       <div class="gradeint-circle"></div>
       <div class="gradeint-circle right"></div>
-      <div class="shape shape-gradient-circle left-top position-absolute bg-gradient"></div>
-      <div class="shape shape-gradient-circle right-bottom position-absolute bg-gradient"></div>
+      <div class="shape shape-gradient-circle left-top position-absolute"></div>
+      <div class="shape shape-gradient-circle right-bottom position-absolute"></div>
       <div class="container">
-         <div class="career-content padding">
+         <div class="career-content">
             <div class="career-main-content mx-auto text-center">
                <?php 
                $hero_section_group = get_field('career_hero_section');
@@ -41,21 +41,23 @@ get_header();
                   </a>
                <?php endif; ?>
             </div>
-            <div class="future-works bg-gradient rounded-5 padding overflow-hidden">
+            <div class="future-works bg-gradient rounded-5 overflow-hidden">
                <?php if(have_rows('value_boxes')): ?>
                <div class="future-works-boxes grid">
                   <?php while(have_rows('value_boxes')): the_row(); ?>
-                  <div class="future-works-item d-flex flex-column text-center align-items-center position-relative">
-                     <?php if($icon = get_sub_field('icon')): ?>
-                        <img class="mb-3" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>">
-                     <?php endif; ?>
-                     <div class="d-flex flex-column pt-1">
-                        <?php if($box_title = get_sub_field('title')): ?>
-                           <h5><?php echo esc_html($box_title); ?></h5>
+                  <div class="future-works-item position-relative">
+                     <div class="future-works-item-content d-flex flex-column text-center align-items-center">
+                        <?php if($icon = get_sub_field('icon')): ?>
+                           <img class="mb-3" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>">
                         <?php endif; ?>
-                        <?php if($description = get_sub_field('description')): ?>
-                           <p class="p14 pt-1"><?php echo esc_html($description); ?></p>
-                        <?php endif; ?>
+                        <div class="d-flex flex-column pt-1">
+                           <?php if($box_title = get_sub_field('title')): ?>
+                              <h5><?php echo esc_html($box_title); ?></h5>
+                           <?php endif; ?>
+                           <?php if($description = get_sub_field('description')): ?>
+                              <p class="p14 pt-1"><?php echo esc_html($description); ?></p>
+                           <?php endif; ?>
+                        </div>
                      </div>
                   </div>
                   <?php endwhile; ?>
@@ -75,14 +77,14 @@ get_header();
       </div>
    </section> <!-- section.career-hero -->
    
-   <section class="grid future-block-section">
-      <div class="blocks-item padding d-flex align-items-center justify-content-end">
-         <div class="img-content">
+   <section class="grid future-block-section px-3 px-md-0">
+      <div class="blocks-item d-flex align-items-center justify-content-center text-center text-md-start justify-content-md-end">
+         <div class="content">
             <h2 class="text-white"><?php echo esc_html( get_field('future_box_title') ); ?></h2>
          </div>
       </div>
-      <div class="blocks-item padding d-flex align-items-center">
-         <div class="img-content text-white">
+      <div class="blocks-item d-flex align-items-center justify-content-center text-center text-md-start">
+         <div class="content text-white">
             <?php echo wp_kses_post(get_field('future_box_content')); ?>
          </div>
       </div>
@@ -91,7 +93,7 @@ get_header();
    <!-- value section start -->
    <section class="value-section">
       <div class="container">
-         <div class="value-content padding">
+         <div class="value-content">
             <?php 
             $core_values = get_field('core_values_section');
             if($core_values) : ?>
@@ -137,7 +139,7 @@ get_header();
    <!-- opening section start -->
    <section class="openning-section">
       <div class="container">
-         <div class="opening-content bg-gradient padding rounded-5 position-relative overflow-hidden">
+         <div class="opening-content bg-gradient rounded-5 position-relative overflow-hidden">
             <div class="shape shape-bg position-absolute"></div>
             <?php 
             $openings_section = get_field('openings_section');
