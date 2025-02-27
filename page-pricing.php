@@ -28,7 +28,7 @@ get_header();
                options ensure you only pay for what you need. From defined, one-time project tiers to ongoing
                subscription plans, we’ve got you covered.</p>
          </div>
-         <div class="info-content rounded-5 bg-gradient mx-auto">
+         <div class="list-card-block rounded-5 bg-gradient mx-auto">
             <div class="container-fluid">
                <div class="row">
                   <div class="col-md-6 info-item position-relative">
@@ -83,7 +83,7 @@ get_header();
          </div>
          <div class="pricing-content row g-3 g-xl-4 align-items-center">
             <div class="col-md-6 col-xl-4">
-               <div class="pricing-item-wrapper">
+               <div class="pricing-plan__card">
                   <div class="pricing-item position-relative rounded-2">
                      <h4>Basic</h4>
                      <p class="pretitle-bold mb-4">Startups & Small Biz</p>
@@ -105,7 +105,7 @@ get_header();
                </div>
             </div>
             <div class="col-md-6 col-xl-4">
-               <div class="pricing-item-wrapper">
+               <div class="pricing-plan__card">
                   <div class="pricing-item position-relative rounded-2">
                      <div class="bg-primary py-3 badge-label top-0 position-absolute">
                         <span class="writing-mode-vlr text-uppercase">Most popular</span>
@@ -131,7 +131,7 @@ get_header();
                </div>
             </div>
             <div class="col-xl-4">
-               <div class="pricing-item-wrapper">
+               <div class="pricing-plan__card">
                   <div class="pricing-item position-relative rounded-2">
                      <h4>Enterprise</h4>
                      <p class="pretitle-bold mb-4">Large Enterprises</p>

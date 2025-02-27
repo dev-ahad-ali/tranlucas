@@ -168,13 +168,13 @@ require get_template_directory() . '/inc/custom-header.php';
 /**
  * Load custom nav walker
  */
-require get_template_directory() . '/helper/bootstrap-5-navbar-walker.php';
+require get_template_directory() . '/helper/walker-bootstrap-5-navbar.php';
 
 /**
  * Load footer widget menu walker
  * 
  */
-require get_template_directory() . '/helper/footer-widget-menu-walker.php';
+require get_template_directory() . '/helper/walker-footer-widget-menu.php';
 
 /**
  * Load additional ACF configs.

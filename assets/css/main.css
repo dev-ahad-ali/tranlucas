@@ -1917,7 +1917,7 @@ section {
   padding-bottom: var(--space-y);
 }
 
-.info-content {
+.list-card-block {
   --space-y: 2rem;
   --space-x: 1.5rem;
   --rotate: 180deg;
@@ -1980,7 +1980,7 @@ section {
   padding-bottom: var(--space-b);
 }
 
-.pricing-item-wrapper {
+.pricing-plan__card {
   background: linear-gradient(
     157.49deg,
     #ffffff 0.87%,
@@ -2610,12 +2610,12 @@ section {
     height: auto;
   }
 
-  .info-content {
+  .list-card-block {
     --space-y: 3.938rem;
     --space-x: 3.625rem;
   }
 
-  .info-content .row {
+  .list-card-block .row {
     --bs-gutter-x: 3rem;
   }
 
@@ -2973,7 +2973,7 @@ section {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
-  .info-content .row {
+  .list-card-block .row {
     --bs-gutter-x: 6rem;
   }
 

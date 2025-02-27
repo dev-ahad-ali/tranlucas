@@ -120,7 +120,7 @@ get_header();
    <?php 
    // Conditionally include FAQ section
    if (get_field('enable_global_faq', get_queried_object_id())) {
-      get_template_part('partials/global-faq');
+      get_template_part('template-parts/global-section/faq-accordion');
    }
    ?>
 
