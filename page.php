@@ -33,6 +33,13 @@ get_header();
 		<div> <!-- .container -->
 	</main><!-- #main -->
 
+	<?php 
+   // Conditionally include FAQ section
+   if (get_field('enable_global_faq')) {
+      get_template_part('partials/global-faq');
+   }
+   ?>
+
 <?php
 // get_sidebar();
 get_footer();

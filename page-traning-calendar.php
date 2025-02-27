@@ -17,7 +17,7 @@ get_header();
          <div class="traning-calender-content padding">
             <h1 class="mb-4">Training Calendar</h1>
             <div class="row align-items-center">
-               <div class="col-md-5">
+               <div class="col-md-4">
                   <div class="search-bar d-flex align-items-center gap">
                      <button class="bg-transparent border-0 p-0" type="button">
                         <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Search.png'; ?>" alt="">
@@ -30,13 +30,13 @@ get_header();
                      </select>
                   </div>
                </div>
-               <div class="col-md-7">
+               <div class="col-md-8">
                   <div class="location d-flex gap flex-wrap">
-                     <button class="p14 px-3 border-0" type="button">Islamabad, Pakistan</button>
-                     <button class="p14 px-3 border-0" type="button">London, UK</button>
-                     <button class="p14 px-3 border-0" type="button">Birmingham, UK</button>
-                     <button class="p14 px-3 border-0" type="button">Melbourne, Australias</button>
-                     <button class="p14 px-3 border-0" type="button">Sydney, Australia</button>
+                     <button class="p14 px-3 border-0 item" type="button">Islamabad, Pakistan</button>
+                     <button class="p14 px-3 border-0 item" type="button">London, UK</button>
+                     <button class="p14 px-3 border-0 item" type="button">Birmingham, UK</button>
+                     <button class="p14 px-3 border-0 item" type="button">Melbourne, Australias</button>
+                     <button class="p14 px-3 border-0 item" type="button">Sydney, Australia</button>
                   </div>
                </div>
             </div>
@@ -171,84 +171,12 @@ get_header();
    <!-- course section end -->
 
 
-   <!-- FAQ section start -->
-   <section class="faq">
-      <div class="container">
-         <div class="faq-content padding bg-gradient position-relative overflow-hidden">
-            <div class="gradeint-circle"></div>
-            <div class="row align-items-center g-3 gap-md-0">
-               <div class="col-lg-4">
-                  <div>
-                     <p class="text-uppercase pretitle-bold">FAQ</p>
-                     <h3>Questions? We have answers.</h3>
-                  </div>
-               </div>
-               <div class="col-lg-8">
-                  <div>
-                     <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                           <h6 class="accordion-header border-bottom">
-                              <button class="accordion-button pb-4" type="button" data-bs-toggle="collapse"
-                                 data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                 Accordion Item #1
-                              </button>
-                           </h6>
-                           <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                 <strong>This is the first item's accordion body.</strong> It is shown by default, until
-                                 the collapse plugin adds the appropriate classes that we use to style each element.
-                                 These classes control the overall appearance, as well as the showing and hiding via CSS
-                                 transitions. You can modify any of this with custom CSS or overriding our default
-                                 variables. It's also worth noting that just about any HTML can go within the
-                                 <code>.accordion-body</code>, though the transition does limit overflow.
-                              </div>
-                           </div>
-                        </div>
-                        <div class="accordion-item">
-                           <h6 class="accordion-header border-bottom">
-                              <button class="accordion-button pb-4 collapsed" type="button" data-bs-toggle="collapse"
-                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                 Accordion Item #2
-                              </button>
-                           </h6>
-                           <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                 <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                 until the collapse plugin adds the appropriate classes that we use to style each
-                                 element. These classes control the overall appearance, as well as the showing and
-                                 hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                 our default variables. It's also worth noting that just about any HTML can go within
-                                 the <code>.accordion-body</code>, though the transition does limit overflow.
-                              </div>
-                           </div>
-                        </div>
-                        <div class="accordion-item">
-                           <h6 class="accordion-header border-bottom">
-                              <button class="accordion-button pb-4 collapsed" type="button" data-bs-toggle="collapse"
-                                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                 Accordion Item #3
-                              </button>
-                           </h6>
-                           <div id="collapseThree" class="accordion-collapse collapse"
-                              data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                 <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                 until the collapse plugin adds the appropriate classes that we use to style each
-                                 element. These classes control the overall appearance, as well as the showing and
-                                 hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                 our default variables. It's also worth noting that just about any HTML can go within
-                                 the <code>.accordion-body</code>, though the transition does limit overflow.
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
-   <!-- FAQ section end -->
+   <?php 
+   // Conditionally include FAQ section
+   if (get_field('enable_global_faq')) {
+      get_template_part('partials/global-faq');
+   }
+   ?>
 
 <?php
 // get_sidebar();

@@ -13,12 +13,14 @@ get_header();
 ?>
 
 	<!-- hero section start -->
-	<section class="contect-hero">
+	<section class="contact-form-section">
       <div class="container">
-         <div class="contact-hero-content-container bg-gradient rounded-5 padding">
-            <div class="row g-5">
+         <div class="contact-gradient-circle bg-gradient rounded-5 position-relative overflow-hidden">
+            <div class="shape shape-gradient-circle position-absolute bottom-left"></div>
+            <div class="row gap-4 gap-md-5 gap-lg-0 g-lg-0">
                <div class="col-lg-6">
-                  <div class="contact-hero-content d-flex gap flex-column">
+                  <div class="contact-form-content d-flex gap flex-column position-relative">
+                  <div class="gradient-circle center"></div>
                   <?php if($contact_section = get_field('contact_section')): ?>
                      <div>
                         <?php if($contact_section['label']): ?>
@@ -88,9 +90,9 @@ get_header();
          <div class="offices-infomation-content">
             <h2><?php echo esc_html($our_office['section_title']); ?></h2>
             <?php if ($our_office['office_locations']): ?>
-            <div class="information-container row">
+            <div class="information-container grid">
                <?php foreach ($our_office['office_locations'] as $office_location ) : ?>
-               <div class="information-item col-sm-6 col-md-4 col-lg-3 position-relative ">
+               <div class="information-item position-relative ">
                   <p class="pretitle-bold mb-1"><?php echo esc_html($office_location['region']) ;?></p>
                   <h6 class="mb-1"><?php echo esc_html($office_location['country']) ;?></h6>
                   <address class="p-14 text-primary mb-4"><?php echo wp_kses_post($office_location['address']) ;?></address>

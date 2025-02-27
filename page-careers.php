@@ -12,9 +12,9 @@
 get_header();
 ?>
 
-   <section class="career-hero overflow-hidden position-relative">
-      <div class="gradeint-circle"></div>
-      <div class="gradeint-circle right"></div>
+   <section class="hero career-hero overflow-hidden position-relative">
+      <div class="gradient-circle"></div>
+      <div class="gradient-circle right"></div>
       <div class="shape shape-gradient-circle left-top position-absolute"></div>
       <div class="shape shape-gradient-circle right-bottom position-absolute"></div>
       <div class="container">
@@ -139,8 +139,8 @@ get_header();
    <!-- opening section start -->
    <section class="openning-section">
       <div class="container">
-         <div class="opening-content bg-gradient rounded-5 position-relative overflow-hidden">
-            <div class="shape shape-bg position-absolute"></div>
+         <div class="opening-content bg-gradient rounded-5 position-relative overflow-hidden padding">
+            <div class="shape shape-gradient-circle position-absolute"></div>
             <?php 
             $openings_section = get_field('openings_section');
             if($openings_section) : ?>
@@ -204,6 +204,13 @@ get_header();
       </div>
    </section>
    <!-- opening section end -->
+
+   <?php 
+   // Conditionally include FAQ section
+   if (get_field('enable_global_faq')) {
+      get_template_part('partials/global-faq');
+   }
+   ?>
 
 <?php
 // get_sidebar();

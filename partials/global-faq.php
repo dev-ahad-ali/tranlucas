@@ -4,7 +4,7 @@
  <section class="faq">
       <div class="container">
          <div class="faq-content bg-gradient position-relative overflow-hidden">
-            <div class="gradeint-circle"></div>
+            <div class="gradient-circle"></div>
             <div class="row align-items-center g-3 gap-md-0">
                <div class="col-lg-5">
                   <div class="ps-xl-4 ms-xl-1">

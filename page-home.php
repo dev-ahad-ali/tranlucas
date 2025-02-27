@@ -11,9 +11,9 @@
 
 get_header();
 ?>
-   <section class="hero home-hero mx-auto bg-primary rounded-5 overflow-hidden">
-      <div class="hero-content-container px-sm-4 px-lg-5 d-flex align-items-center justify-content-center  position-relative overflow-hidden">
-         <div class="hero-content padding d-md-inline-flex align-items-center justify-content-between container">
+   <section class="banner home-banner position-relative bg-primary rounded-5 overflow-hidden">
+      <div class="banner-content-container px-sm-4 px-lg-5 d-flex align-items-center justify-content-center  position-relative overflow-hidden">
+         <div class="banner-content padding d-md-inline-flex align-items-center justify-content-between container">
             <h1 class="text-white mb-3 mb-lg-0"><?php echo esc_html( get_field('hero_section_title') ); ?></h1>
             <p class="p18"><?php echo wp_kses_post ( get_field('hero_section_lead') ); ?></p>
          </div>
@@ -21,7 +21,7 @@ get_header();
          <div class="shape shape-gradient-circle color-2 position-absolute bg-gradient"></div>
          <div class="shape shape-bg position-absolute"></div>
       </div>
-   </section> <!-- .home-hero -->
+   </section> <!-- .home-banner -->
 
    <section class="certificate padding">
       <div class="container">
@@ -42,7 +42,7 @@ get_header();
       </div>
    </section> <!-- .certificate -->
 
-   <section class="service">
+   <section class="service cyber-solutions-section">
       <div class="container">
          <?php $title_group = get_field('we_are_tranchulas_section');
          if($title_group) : ?>
@@ -52,7 +52,7 @@ get_header();
             <p class="p18"><?php echo wp_kses_post ( $title_group['lead']); ?></p>
          </div>
          <?php endif; ?>
-         <div class="service-boxe grid">
+         <div class="service-boxe cyber-security-services grid">
             <!-- active service start -->
             <?php if(have_rows('technology_flaws')): 
                 $featured_found = false;
@@ -65,20 +65,20 @@ get_header();
                         $featured_found = true;                         
                      ?>
 
-               <div class="service-item active active-service padding bg-primary rounded-3 d-flex align-items-center">
+               <div class="service-item cyber-security-services__card active active-service padding bg-primary rounded-3 d-flex align-items-center">
                   <div class="d-inline-flex flex-column gap-4">
                      <!-- <img class="" src="<?php echo get_template_directory_uri() . '/assets/img/icons/Target.svg'; ?>" alt="target"> -->
                      <?php
                         $featured_item_icon = get_sub_field('icon');
                      if(!empty($featured_item_icon)) : ?>
-                        <img src="<?php echo esc_url($featured_item_icon['url']); ?>" alt="<?php echo esc_attr($featured_item_icon['alt']); ?>">
+                        <img class="card_icon" src="<?php echo esc_url($featured_item_icon['url']); ?>" alt="<?php echo esc_attr($featured_item_icon['alt']); ?>">
                      <?php endif; ?>
                      <h4 class="text-white"><?php echo esc_html(get_sub_field('title')); ?></h4>
-                     <p class="p16"><?php echo wp_kses_post(get_sub_field('description')); ?></p>
+                     <?php echo wp_kses_post(get_sub_field('description')); ?>
                      <div>
                         <?php $link = get_sub_field('explore_button'); ?>
                         <a class="btn btn-secondary" href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target'] ?: '_self'); ?>">
-                           <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Triangle.svg'; ?>" alt="Triangle">
+                           <img class="button_icon" src="<?php echo get_template_directory_uri() . '/assets/img/icons/Triangle.svg'; ?>" alt="Triangle">
                            <?php echo esc_html($link['title']); ?>
                         </a>
                      </div>
@@ -95,17 +95,16 @@ get_header();
                      $non_featured[] = get_row(true); 
                }
             endwhile; ?>
-            <!-- active service start -->
             <div class="service-right-boxe grid">
                <?php foreach($non_featured as $item): ?>
-                  <div class="service-item d-flex flex-column gap-3 bg-primary rounded-3 position-relative">
+                  <div class="service-item d-flex flex-column gap-3 bg-primary rounded-3 position-relative" data-description="<?php echo esc_attr(wp_strip_all_tags($item['description'])); ?>">
                      <?php if(!empty($item['icon'])) : ?>
-                        <img src="<?php echo esc_url($item['icon']['url']); ?>" alt="<?php echo esc_attr($item['icon']['alt']); ?>">
+                        <img class="card_icon" src="<?php echo esc_url($item['icon']['url']); ?>" alt="<?php echo esc_attr($item['icon']['alt']); ?>">
                      <?php endif; ?>
                      <h6 class="p16 text-white"><?php echo esc_html($item['title']); ?></h6>
                      <?php if($item['explore_button']) : // Changed from 'link' to 'explore_button' ?>
                      <a class="position-absolute" href="<?php echo esc_url($item['explore_button']['url']); ?>" target="<?php echo esc_attr($item['explore_button']['target'] ?: '_self'); ?>">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Extend.svg'; ?>" alt="external link icon">
+                        <img class="link_icon" src="<?php echo get_template_directory_uri() . '/assets/img/icons/Extend.svg'; ?>" alt="external link icon">
                      </a>
                      <?php endif; ?>
                   </div>
@@ -140,22 +139,22 @@ get_header();
          <div class="statistic-section-container bg-gradient padding position-relative overflow-hidden">
             <div class="shape shape-bg position-absolute"></div>
             <?php if($stats = get_field('statistics_section')): ?>
-            <div class="number-content mx-auto text-center padding">
+            <div class="statistic-content mx-auto text-center padding">
                <?php if($stats['label']) : ?>
                   <p class="text-uppercase pretitle-bold"><?php echo esc_html($stats['label']); ?></p>
                <?php endif; ?>
 
                <h2><?php echo esc_html( $stats['title'] ); ?></h2>
                <p class="p18 text-primary"><?php echo wp_kses_post($stats['lead']); ?></p>
-            </div> <!-- .number-content -->
-            <div class="number-item-container grid">
+            </div> <!-- .statistic-content -->
+            <div class="statistic-item-container grid">
                <?php foreach( get_field('statistics') as $stat): ?>
                <div class="number-item text-center position-relative">
                   <p class="h1" data-target="<?php echo esc_attr($stat['stat_number']); ?>">0</p>
                   <p class="p16"><?php echo esc_html($stat['stat_label']); ?></p>
                </div>
                <?php endforeach; ?>
-            </div> <!-- .number-item-container -->
+            </div> <!-- .statistic-item-container -->
             <?php endif; ?>
          </div>
       </div>
