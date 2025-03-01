@@ -230,7 +230,7 @@ h6 {
   position: relative;
 }
 
-.hero:has(+ section .overlap-area) {
+.hero:has(+ section.overlap-on-top) {
   padding-bottom: var(--overlap-area);
 }
 
@@ -323,8 +323,12 @@ h6 {
   margin-right: auto;
 }
 
-.overlap-area {
+.overlap-on-top .overlap-area {
   margin-top: calc(var(--overlap-area) * -1);
+}
+
+.our-approach:not(.overlap-on-top) .overlap-area {
+  margin-top: var(--spacing);
 }
 
 .card {
