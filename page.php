@@ -16,29 +16,25 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main">
-		<div class="container">
-			<?php
-			while ( have_posts() ) :
-				the_post();
+			<?php while ( have_posts() ) : the_post(); ?>
 
-				get_template_part( 'template-parts/content', 'page' );
+				<?php
+				if ( have_rows( 'cms' ) ) :
+					while ( have_rows('cms') ) : the_row();
+						$layout = get_row_layout();
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
+						if($layout) {
+							get_template_part( 'template-parts/flexible-content/' . $layout);
+						}
+					endwhile;
+				else : ?>
+					<div class="container">
+						<?php get_template_part( 'template-parts/content', 'page' ); ?>
+					</div> <!-- .container -->
+				<?php endif; ?>
 
-			endwhile; // End of the loop.
-			?>
-		<div> <!-- .container -->
+			<?php endwhile; // End of the loop. ?>
 	</main><!-- #main -->
-
-	<?php 
-   // Conditionally include FAQ section
-   if (get_field('enable_global_faq')) {
-      get_template_part('partials/global-faq');
-   }
-   ?>
 
 <?php
 // get_sidebar();
