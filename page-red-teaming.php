@@ -17,11 +17,8 @@ get_header();
             <h2 class="text-white mb-4">Red Teaming by Tranchulas: Your Defense, Battle-Tested</h2>
             <h5 class="text-white mb-4">Advanced adversarial simulations built on cutting-edge threat
                intelligence and the latest offensive methodologies.</h5>
-            <p class="p14 mb-4">At Tranchulas, we don’t just test your defenses—we challenge them in the same way
-               today’s most advanced cybercriminals and nation-state actors would. Our Red Teaming operations are
-               meticulously crafted to emulate real, evolving threats—from zero-day vulnerabilities to sophisticated
-               ransomware campaigns—ensuring that when an attacker strikes, your security posture stands unshaken.</p>
-            <a class="btn bg-white text-primary" href="#">Request a Consultation</a>
+            <p class="p14 mb-4">At Tranchulas, we don’t just test your defenses—we challenge them in the same way today’s most advanced cybercriminals and nation-state actors would. Our Red Teaming operations are meticulously crafted to emulate real, evolving threats—from zero-day vulnerabilities to sophisticated ransomware campaigns—ensuring that when an attacker strikes, your security posture stands unshaken.</p>
+               <a class="btn bg-white text-primary" href="#">Request a Consultation</a>
          </div>
       </div>
    </section>

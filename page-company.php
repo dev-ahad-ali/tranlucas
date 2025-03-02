@@ -57,16 +57,16 @@ get_header();
    <!--why choose section start -->
    <section class="why-choose">
       <div class="container">
-         <div class="why-choose-content">
-            <h3>Why Choose Tranchulas?</h3>
-            <div class="features-wrapper d-flex flex-column gap">
+         <h3>Why Choose Tranchulas?</h3>
+         <div class="cards-layout-container">
+            <div class="cards-wrapper d-flex flex-column gap">
                <div
-                  class="features-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
+                  class="card-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
                   <div class="d-inline-flex align-items-center gap">
                      <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Globe.png'; ?>" alt="">
                      <h4 class="mb-0">Global Expertise</h4>
                   </div>
-                  <div class="features-item-content">
+                  <div class="description">
                      <p class="text-primary p14">Operating across Australia, Pakistan, the UK, and the US, we bring
                         diverse
                         perspectives and
@@ -74,12 +74,12 @@ get_header();
                   </div>
                </div>
                <div
-                  class="features-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
+                  class="card-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
                   <div class="d-inline-flex align-items-center gap">
                      <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Globe.png'; ?>" alt="">
                      <h4 class="mb-0">Global Expertise</h4>
                   </div>
-                  <div class="features-item-content">
+                  <div class="description">
                      <p class="text-primary p14">Operating across Australia, Pakistan, the UK, and the US, we bring
                         diverse
                         perspectives and
@@ -87,12 +87,12 @@ get_header();
                   </div>
                </div>
                <div
-                  class="features-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
+                  class="card-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
                   <div class="d-inline-flex align-items-center gap">
                      <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Globe.png'; ?>" alt="">
                      <h4 class="mb-0">Global Expertise</h4>
                   </div>
-                  <div class="features-item-content">
+                  <div class="description">
                      <p class="text-primary p14">Operating across Australia, Pakistan, the UK, and the US, we bring
                         diverse
                         perspectives and
@@ -100,12 +100,12 @@ get_header();
                   </div>
                </div>
                <div
-                  class="features-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
+                  class="card-item padding border rounded-2 d-flex gap flex-column flex-md-row align-items-md-center justify-content-between">
                   <div class="d-inline-flex align-items-center gap">
                      <img src="<?php echo get_template_directory_uri() . '/assets/img/icons/Globe.png'; ?>" alt="">
                      <h4 class="mb-0">Global Expertise</h4>
                   </div>
-                  <div class="features-item-content">
+                  <div class="description">
                      <p class="text-primary p14">Operating across Australia, Pakistan, the UK, and the US, we bring
                         diverse
                         perspectives and
@@ -117,12 +117,12 @@ get_header();
       </div>
    </section>
    <!--why choose section end -->
-   <!--accreditation section start -->
-   <section class="accreditation">
+   <!--certification section start -->
+   <section class="certification">
       <div class="container">
-         <div class="accreditation-content text-center mx-auto">
+         <div class="certification-content text-center mx-auto">
             <h4>Accreditations & Compliance Capabilities</h4>
-            <p class="pt-1 p16">Tranchulas holds key certifications and accreditations that attest to our rigorous
+            <p class="pt-1 p16">Tranchulas holds key certifications and certifications that attest to our rigorous
                standards
                and global
                credibility. These credentials validate our commitment to robust governance, ethical hacking excellence,
@@ -139,7 +139,7 @@ get_header();
          </div>
       </div>
    </section>
-   <!--accreditation section end -->
+   <!--certification section end -->
    <!--membership section start -->
    <section class="membership">
       <div class="container">
