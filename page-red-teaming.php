@@ -105,7 +105,7 @@ get_header();
    </section>
    <!-- core feature section end -->
    <!-- scheme section start -->
-   <section class="scheme d-none">
+   <section class="scheme">
       <div class="container">
          <div class="scheme-content bg-gradient padding position-relative overflow-hidden" style="background-image: url(<?php echo get_template_directory_uri() . '/assets/img/media/approach-cycle-bg.png'; ?>);">
             <div class="shape section-bg position-absolute" style="background-image: url(<?php echo get_template_directory_uri() . '/assets/img/media/approach-cycle-bg.png'; ?>);"></div>

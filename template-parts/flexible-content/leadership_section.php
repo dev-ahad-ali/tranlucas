@@ -6,26 +6,18 @@
             <div class="row g-4">
                <div class="col-md-6">
                   <div class="leadership-left-content">
-                     <img src="<?php echo get_template_directory_uri() . '/assets/img/media/leader1.png'; ?>" alt="team member 1">
+                     <?php if( $avatar = get_sub_field('avatar') ): ?>
+                     <img src="<?php echo $avatar ? esc_url($avatar['url']) : get_template_directory_uri() . '/assets/img/media/leader1.png'; ?>" alt="<?php echo $avatar ? esc_attr($avatar['alt']) : 'team member 1'; ?>">
+                     <?php endif; ?>
                      <div class="leadership-left-text-content">
-                        <p class="pretitle-bold">leadership</p>
-                        <h3 class="mb-0">Zubair Khan, CEO</h3>
+                        <p class="pretitle-bold"><?php echo esc_html(get_sub_field('pretitle')); ?></p>
+                        <h3 class="mb-0"><?php echo esc_html(get_sub_field('name')); ?></h3>
                      </div>
                   </div>
                </div>
                <div class="col-md-6">
-                  <div class="leadership-right-content">
-                     <p class="p16 text-primary position-relative">Zubair Khan guides Tranchulas’ global vision, forging
-                        strategic
-                        alliances and overseeing complex
-                        security transformations. With over two decades of experience, he delivers impactful solutions
-                        and is deeply involved in cyber warfare research. A sought-after speaker at international forums
-                        (Hack.lu Luxembourg, Hack in the Box Malaysia, ISS World, Infosek Slovenia), Zubair’s thought
-                        leadership shapes industry best practices.
-
-                        He holds prestigious certifications—PMP, CRISC, CDPSE, CIPM, AIGP, CISA, CISM—and is an ISO
-                        27001 Auditor. His role ensures Tranchulas remains at the forefront of cybersecurity
-                        advancements, offering clients unmatched expertise and leadership.</p>
+                  <div class="leadership-right-content p16 text-primary position-relative">
+                        <?php echo wp_kses_post(get_sub_field('description')); ?>
                   </div>
                </div>
             </div>
