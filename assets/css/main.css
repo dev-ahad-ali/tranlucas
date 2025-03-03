@@ -2224,6 +2224,7 @@ section {
   padding-left: 1.25rem;
   max-width: 16.25rem;
   margin-top: 1rem;
+  position: relative;
 }
 
 .cycle .cycle-item:first-child {
@@ -3144,9 +3145,26 @@ section {
   }
 }
 
+@media (max-width: 882px) {
+  .cycle .cycle-item:nth-child(3) {
+    margin-left: 0;
+  }
+  .ellipse-wrap {
+    display: none;
+  }
+  .cycle .cycle-item:nth-child(4) {
+    margin-left: auto;
+  }
+  .cycle .cycle-item:nth-child(5) {
+    margin-left: 0;
+  }
+}
 @media (max-width: 767px) {
   .partner-logo > img {
     max-height: 2rem;
+  }
+  .cycle .cycle-item:nth-child(4) {
+    margin-left: 0;
   }
 }
 
