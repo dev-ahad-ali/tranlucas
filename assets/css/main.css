@@ -2217,7 +2217,10 @@ section {
 }
 
 .cycle {
-  padding-left: 0%;
+  padding-left: 87px;
+}
+.cycle .row {
+  height: 437px;
 }
 .cycle .cycle-item {
   --bs-border-color: var(--bs-primary, #000000);
@@ -2226,49 +2229,34 @@ section {
   margin-top: 1rem;
   position: relative;
 }
-
-.cycle .cycle-item:first-child {
-  order: 1;
-}
-
-.cycle .cycle-item:nth-child(2) {
-  order: 2;
-  margin-left: 0;
-}
-
-.cycle .cycle-item:nth-child(3) {
-  order: 3;
-  margin-left: 0;
-}
-
-.cycle .cycle-item:nth-child(4) {
-  order: 5;
-}
-
-.cycle .cycle-item:nth-child(5) {
-  order: 6;
-  margin-left: 0;
-}
-
-.cycle .cycle-item:nth-child(6) {
-  margin-left: 0;
-  order: 7;
-}
-
 .ellipse-wrap {
-  order: 4;
-  margin-top: -5rem;
-  margin-left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
 .shape-ellipse {
-  max-width: 79.5740561471%;
+  max-width: 69%;
 }
 
 .cycle .cycle-item img {
   --size: 2.5rem;
   width: var(--size);
   height: var(--size);
+}
+.cycle .cycle-item {
+  max-height: 190px;
+}
+.cycle-row-one .cycle-item:first-child {
+  max-height: 234px;
+  margin-top: 177px;
+}
+
+.cycle-row-one .cycle-item:nth-child(2) {
+  margin-top: 56px;
+}
+
+.cycle-row-two .cycle-item:first-child {
+  max-height: 231px;
 }
 /* scheme section end */
 /* get in touch section start */
@@ -2679,30 +2667,6 @@ section {
   .core-feature-widget {
     --column: 3;
   }
-  .cycle {
-    --column: 3;
-  }
-
-  .get-in-touch {
-    --spacing: 6.5rem;
-  }
-  /* .cycle .cycle-item:nth-child(3) {
-        margin-top: 5%;
-    } */
-  .cycle .cycle-item:nth-child(2) {
-    margin-left: auto;
-    /* margin-right: auto; */
-  }
-  .cycle .cycle-item:nth-child(3) {
-    margin-left: auto;
-  }
-  .cycle .cycle-item:nth-child(5) {
-    margin-left: auto;
-    /* margin-top: -4%; */
-  }
-  .cycle .cycle-item:nth-child(6) {
-    margin-left: auto;
-  }
 }
 
 /* responsive design */
@@ -3027,36 +2991,6 @@ section {
   .contact-form-content {
     padding-inline-end: 3rem;
   }
-  .cycle .cycle-item:first-child {
-    margin-top: 11.0625rem;
-  }
-
-  .cycle .cycle-item:nth-child(2) {
-    margin-top: 3.5rem;
-    /* margin-left: 4%; */
-    /* margin-left: auto; */
-    margin-bottom: 3.563rem;
-  }
-
-  .cycle .cycle-item:nth-child(3) {
-    /* margin-left: 3%; */
-    /* margin-left: auto; */
-    margin-bottom: 4.563rem;
-  }
-  .cycle .cycle-item:nth-child(6) {
-    margin-top: -7rem;
-    margin-bottom: 7rem;
-    margin-left: 2rem;
-  }
-  .cycle .cycle-item {
-    max-width: 15rem;
-  }
-  .scheme-content {
-    --padding-top: clamp(3rem, 1.9792rem + 5.1042cqi, 6.0625rem);
-    --padding-bottom: clamp(4.25rem, 2.1667rem + 10.4167cqi, 10.5rem);
-    --padding-left: clamp(3rem, 1.7708rem + 6.1458cqi, 6.6875rem);
-    --padding-right: clamp(1.5rem, 0.9167rem + 2.9167cqi, 3.25rem);
-  }
 }
 
 @media (min-width: 1200px) {
@@ -3093,40 +3027,6 @@ section {
     --spacing-y: 4.5rem;
     --spacing-x: 6rem;
   }
-  .cycle .cycle-item:first-child {
-    margin-top: 11.0625rem;
-  }
-
-  .cycle .cycle-item:nth-child(2) {
-    margin-top: 3.5rem;
-    margin-left: 4.25943852856%;
-    margin-bottom: 2.563rem;
-  }
-
-  .cycle .cycle-item:nth-child(3) {
-    margin-left: 9.19651500484%;
-    margin-top: 0;
-    margin-bottom: 5rem;
-  }
-  .cycle .cycle-item:nth-child(4) {
-    margin-top: 1.1875rem;
-  }
-
-  .cycle .cycle-item:nth-child(5) {
-    margin-top: 0.25rem;
-    margin-left: 5rem;
-  }
-
-  .cycle .cycle-item:nth-child(6) {
-    margin-top: -10.9375rem;
-    margin-left: 8rem;
-    margin-bottom: 15%;
-  }
-  .cycle {
-    --column: 1;
-    padding-left: clamp(3rem, 2.1896rem + 4.0521cqi, 5.4313rem);
-    /* padding-left: 6.92430278884%; */
-  }
 }
 
 /* @media (min-width: 1400px) {
@@ -3145,26 +3045,9 @@ section {
   }
 }
 
-@media (max-width: 882px) {
-  .cycle .cycle-item:nth-child(3) {
-    margin-left: 0;
-  }
-  .ellipse-wrap {
-    display: none;
-  }
-  .cycle .cycle-item:nth-child(4) {
-    margin-left: auto;
-  }
-  .cycle .cycle-item:nth-child(5) {
-    margin-left: 0;
-  }
-}
 @media (max-width: 767px) {
   .partner-logo > img {
     max-height: 2rem;
-  }
-  .cycle .cycle-item:nth-child(4) {
-    margin-left: 0;
   }
 }
 
@@ -3173,11 +3056,7 @@ section {
     max-height: 2rem;
   }
 }
-@media (max-width: 1024px) {
-  .shape-ellipse {
-    display: none;
-  }
-}
+
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .future-works-item:not(:nth-child(2n + 2)):last-child {
     grid-column: 1/3;

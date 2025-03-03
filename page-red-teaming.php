@@ -151,45 +151,49 @@ get_header();
                   <img src="<?php echo get_template_directory_uri() . '/assets/img/shape/shape-ellipse.png'; ?>" alt="Ellips shape" class="shape-ellipse">
                </div>
             </div> -->
-            <div class="cycle d-flex flex-wrap">
-               <div class="cycle-item border-start">
-                  <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
-                  <h5 class="pt-2">Reconnaissance</h5>
-                  <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
-                     surfaces.</p>
+            <div class="cycle  position-relative">
+               <div class="row cycle-row-one justify-content-between">
+                  <div class="cycle-item border-start">
+                     <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
+                     <h5 class="pt-2">Reconnaissance</h5>
+                     <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
+                        surfaces.</p>
+                  </div>
+                  <div class="cycle-item border-start">
+                     <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
+                     <h5 class="pt-2">Reconnaissance</h5>
+                     <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
+                        surfaces.</p>
+                  </div>
+                  <div class="cycle-item border-start">
+                     <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
+                     <h5 class="pt-2">Reconnaissance</h5>
+                     <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
+                        surfaces.</p>
+                  </div>
                </div>
-               <div class="cycle-item border-start">
-                  <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
-                  <h5 class="pt-2">Reconnaissance</h5>
-                  <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
-                     surfaces.</p>
-               </div>
-               <div class="cycle-item border-start">
-                  <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
-                  <h5 class="pt-2">Reconnaissance</h5>
-                  <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
-                     surfaces.</p>
-               </div>
-               <div class="cycle-item border-start">
-                  <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
-                  <h5 class="pt-2">Reconnaissance</h5>
-                  <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
-                     surfaces.</p>
-               </div>
-               <div class="cycle-item border-start">
-                  <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
-                  <h5 class="pt-2">Reconnaissance</h5>
-                  <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
-                     surfaces.</p>
-               </div>
-               <div class="cycle-item border-start">
-                  <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
-                  <h5 class="pt-2">Reconnaissance</h5>
-                  <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
-                     surfaces.</p>
-               </div>
-               <div class="w-100 ellipse-wrap">
+               <div class="w-100 ellipse-wrap position-absolute d-flex justify-content-center">
                   <img src="<?php echo get_template_directory_uri() . '/assets/img/shape/shape-ellipse.png'; ?>" alt="Ellips shape" class="shape-ellipse">
+               </div>
+               <div class="row cycle-row-two align-content-center justify-content-between">
+                  <div class="cycle-item border-start">
+                     <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
+                     <h5 class="pt-2">Reconnaissance</h5>
+                     <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
+                        surfaces.</p>
+                  </div>
+                  <div class="cycle-item border-start">
+                     <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
+                     <h5 class="pt-2">Reconnaissance</h5>
+                     <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
+                        surfaces.</p>
+                  </div>
+                  <div class="cycle-item border-start">
+                     <img class="mb-1" src="<?php echo get_template_directory_uri() . '/assets/img/icons/search.png' ;?>" alt="">
+                     <h5 class="pt-2">Reconnaissance</h5>
+                     <p class="p14 pt-1">Intelligence gathering and target analysis to pinpoint your unique threat
+                        surfaces.</p>
+                  </div>
                </div>
             </div>
          </div>
