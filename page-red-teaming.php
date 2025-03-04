@@ -172,7 +172,7 @@ get_header();
                         surfaces.</p>
                   </div>
                </div>
-               <div class="w-100 ellipse-wrap position-absolute d-flex justify-content-center">
+               <div class="w-100 ellipse-wrap position-absolute d-flex ">
                   <img src="<?php echo get_template_directory_uri() . '/assets/img/shape/shape-ellipse.png'; ?>" alt="Ellips shape" class="shape-ellipse">
                </div>
                <div class="row cycle-row-two align-content-center justify-content-between">

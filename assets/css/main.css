@@ -2218,7 +2218,8 @@ section {
 
 /* mobile cycle */
 .cycle {
-  padding-left: 7.7%;
+  transition: ease-in 1.3s;
+  padding-left: min(1.1%, 7.7%);
 }
 .cycle .cycle-item {
   --bs-border-color: var(--bs-primary, #000000);
@@ -2228,9 +2229,9 @@ section {
   position: relative;
 }
 .ellipse-wrap {
+  margin-left: 4%;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
 }
 .shape-ellipse {
   max-width: 69%;
@@ -2242,6 +2243,7 @@ section {
   width: var(--size);
   height: var(--size);
   position: static;
+  display: block;
 }
 .cycle .cycle-item {
   max-height: 190px;
@@ -2969,12 +2971,12 @@ section {
     position: relative;
   }
   .shape-ellipse {
-    max-width: 69%;
+    max-width: 77%;
     display: block;
   }
 
   .cycle .cycle-item img {
-    position: absolute;
+    display: none;
   }
   .cycle .row {
     flex-wrap: nowrap;
@@ -2988,24 +2990,13 @@ section {
     margin-top: 13.649573%;
     margin-left: 3.10283687943%;
   }
-  .cycle-row-one .cycle-item:first-child img {
-    bottom: -75px;
-  }
-  .cycle-row-one .cycle-item:nth-child(2) img {
-    bottom: -60px;
-    left: -2px;
-  }
-  .cycle-row-one .cycle-item:nth-child(3) img {
-    bottom: -50px;
-    left: -15px;
-  }
   .cycle-row-one .cycle-item:nth-child(2) {
     /* margin-top: 50px; */
     margin-top: 3.649573%;
   }
   .cycle-row-one .cycle-item:nth-child(3) {
     margin-top: 0;
-    margin-right: 8.86524822695%;
+    margin-right: 5.86524822695%;
   }
 
   .cycle-row-two .cycle-item:first-child {
@@ -3013,24 +3004,12 @@ section {
     margin-left: 7.53546099291%;
     margin-top: 258px;
   }
-  .cycle-row-two .cycle-item:first-child img {
-    top: -75px;
-    left: 0px;
-  }
   .cycle-row-two .cycle-item:nth-child(2) {
     margin-top: 238px;
   }
-  .cycle-row-two .cycle-item:nth-child(2) img {
-    top: -70px;
-    left: -18px;
-  }
   .cycle-row-two .cycle-item:nth-child(3) {
     margin-top: 45px;
-    margin-right: -3.5%;
-  }
-  .cycle-row-two .cycle-item:nth-child(3) img {
-    top: -65px;
-    left: -18px;
+    margin-right: -4.5%;
   }
   /* tab cycle */
 }
@@ -3091,6 +3070,10 @@ section {
   .contact-form-section {
     --spacing-y: 4.5rem;
     --spacing-x: 6rem;
+  }
+
+  .cycle {
+    padding-left: max(7.7%, 1%);
   }
 }
 
