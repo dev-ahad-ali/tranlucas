@@ -2218,7 +2218,7 @@ section {
 
 /* mobile cycle */
 .cycle {
-  transition: ease-in 1.3s;
+  transition-duration: 0.5s;
   padding-left: min(1.1%, 7.7%);
 }
 .cycle .cycle-item {
